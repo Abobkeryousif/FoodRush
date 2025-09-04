@@ -1,0 +1,1 @@
+﻿global using FoodRush.Infrastructure.DependencyInjection;
