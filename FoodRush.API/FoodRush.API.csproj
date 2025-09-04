@@ -23,4 +23,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FoodRush.Infrastructure\FoodRush.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
