@@ -7,6 +7,7 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
 builder.Services.InfrastructureReigster(builder.Configuration);
+builder.Services.ApplicationReigster();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

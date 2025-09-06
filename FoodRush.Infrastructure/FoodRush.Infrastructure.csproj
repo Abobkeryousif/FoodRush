@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FoodRush.Application\FoodRush.Application.csproj" />
     <ProjectReference Include="..\FoodRush.Domain\FoodRush.Domain.csproj" />
   </ItemGroup>
 
