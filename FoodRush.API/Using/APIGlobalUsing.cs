@@ -6,3 +6,4 @@ global using FoodRush.Application.Feature.Command.Restaurants;
 global using System.Reflection;
 global using FoodRush.Application.DependencyInjection;
 global using FoodRush.Application.Feature.Query.Restaurants;
+global using Microsoft.AspNetCore.RateLimiting;

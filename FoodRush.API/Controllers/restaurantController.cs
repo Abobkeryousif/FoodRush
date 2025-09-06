@@ -3,6 +3,7 @@ namespace FoodRush.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [EnableRateLimiting("fixed")]
     public class restaurantController : ControllerBase
     {
         private readonly ISender _sender;
