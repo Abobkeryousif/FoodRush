@@ -1,6 +1,5 @@
 ﻿namespace FoodRush.Domain.Entites
 {
-
     public class Meal
     {
         public int mealId { get; set; }

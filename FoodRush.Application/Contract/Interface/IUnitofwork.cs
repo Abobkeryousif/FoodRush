@@ -3,5 +3,6 @@
     public interface IUnitofwork
     {
         public IRestaurantRepository RestaurantRepository { get; }
+        public IMealRepository MealRepository { get; }
     }
 }

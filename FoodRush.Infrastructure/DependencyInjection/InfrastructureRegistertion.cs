@@ -1,5 +1,4 @@
-﻿using FoodRush.Infrastructure.Implemention;
-
+﻿
 namespace FoodRush.Infrastructure.DependencyInjection
 {
     public static class InfrastructureRegistertion
@@ -13,7 +12,6 @@ namespace FoodRush.Infrastructure.DependencyInjection
             //Services Reigster
             services.AddScoped(typeof(IGeneraicRepository<>), typeof(GeneraicRepository<>));
             services.AddScoped<IUnitofwork, Unitofwork>();
-            services.AddScoped<IRestaurantRepository, RestaurantRepository>();
 
             return services;
         }

@@ -7,7 +7,10 @@
         {
             _contaxt = contaxt;
             RestaurantRepository = new RestaurantRepository(_contaxt);
+            MealRepository = new MealRepository(_contaxt);
         }
         public IRestaurantRepository RestaurantRepository { get; }
+
+        public IMealRepository MealRepository {  get; }
     }
 }
