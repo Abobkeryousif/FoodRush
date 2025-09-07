@@ -12,7 +12,7 @@ namespace FoodRush.Infrastructure.DependencyInjection
             //Services Reigster
             services.AddScoped(typeof(IGeneraicRepository<>), typeof(GeneraicRepository<>));
             services.AddScoped<IUnitofwork, Unitofwork>();
-
+            services.AddSingleton<IPhotoService, PhotoService>();
             return services;
         }
     }

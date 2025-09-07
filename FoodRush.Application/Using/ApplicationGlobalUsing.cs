@@ -10,6 +10,9 @@ global using System.Reflection;
 global using AutoMapper;
 global using FoodRush.Application.AutoMapper;
 global using FluentValidation;
+global using Microsoft.AspNetCore.Http;
+
+
 
 
 

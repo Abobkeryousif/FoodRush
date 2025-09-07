@@ -4,10 +4,34 @@ namespace FoodRush.Infrastructure.Implemention
     public class MealRepository : GeneraicRepository<Meal>, IMealRepository
     {
         private readonly ApplicationDbContaxt _contaxt;
-        public MealRepository(ApplicationDbContaxt context) : base(context)
+        private readonly IMapper _mapper;
+        private readonly IPhotoService _photoService;
+        public MealRepository(ApplicationDbContaxt context, IMapper mapper, IPhotoService photoService) : base(context)
         {
             _contaxt = context;
+            _mapper = mapper;
+            _photoService = photoService;
         }
+
+        public async Task<bool> AddAsync(AddMealDto mealDto)
+        {
+            if (mealDto == null) return false;
+
+            var Meal = _mapper.Map<Meal>(mealDto);
+            await _contaxt.Meals.AddAsync(Meal);
+            await _contaxt.SaveChangesAsync();
+
+            var imagePaths = await _photoService.AddPhotoAsync(mealDto.Photos, Meal.Name);
+
+            var images = imagePaths.Select(path => new Photo
+            {
+
+                photoName = path,
+                mealId = Meal.mealId
+            }).ToList();
+            return true;
+        }
+
         public async Task<List<GetMealDto>> GetAllMealAsync()
         {
             var result = await _contaxt.Meals

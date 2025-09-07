@@ -9,5 +9,11 @@ global using FoodRush.Application.Contract.Interface;
 global using System.Linq.Expressions;
 global using FoodRush.Infrastructure.Implemention;
 global using FoodRush.Application.DTOs;
+global using AutoMapper;
+global using FoodRush.Application.Contract.Service;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.Extensions.FileProviders;
+
+
 
 

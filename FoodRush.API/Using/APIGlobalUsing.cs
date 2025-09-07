@@ -8,4 +8,9 @@ global using FoodRush.Application.DependencyInjection;
 global using FoodRush.Application.Feature.Query.Restaurants;
 global using Microsoft.AspNetCore.RateLimiting;
 global using FluentValidation.AspNetCore;
-global using FoodRush.Application.Validtor; 
+global using FoodRush.Application.Validtor;
+global using Microsoft.Extensions.FileProviders;
+global using System.Threading.RateLimiting;
+global using FoodRush.Application.Feature.Command.Meals;
+global using FoodRush.Application.Feature.Query.Meals;
+
