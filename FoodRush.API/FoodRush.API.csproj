@@ -27,4 +27,8 @@
     <ProjectReference Include="..\FoodRush.Infrastructure\FoodRush.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
 </Project>

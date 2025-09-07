@@ -5,7 +5,8 @@ namespace FoodRush.Application.AutoMapper
     {
         public AutoMapping()
         {
-            CreateMap<Meal, MealDto>().ReverseMap();
+            CreateMap<Meal, AddMealDto>().ReverseMap();
+            CreateMap<Meal, AddMealDto>().ReverseMap().ForMember(p=> p.Photos , o=> o.Ignore());
         }
     }
 }

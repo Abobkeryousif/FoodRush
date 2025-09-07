@@ -1,6 +1,4 @@
 
-using System.Threading.RateLimiting;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
@@ -8,6 +6,7 @@ builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
 builder.Services.InfrastructureReigster(builder.Configuration);
 builder.Services.ApplicationReigster();
+builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
 
 //Apply Rate Limit 10 request for each IP Address And Block IP 10 Seconds For Save Our API From Dos Attack
 builder.Services.AddRateLimiter(options =>
@@ -52,7 +51,7 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();

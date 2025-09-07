@@ -1,7 +1,7 @@
 ﻿
 namespace FoodRush.Application.Validtor
 {
-    public class MealDtoValidator : AbstractValidator<MealDto>
+    public class MealDtoValidator : AbstractValidator<AddMealDto>
     {
         public MealDtoValidator()
         {
@@ -19,5 +19,8 @@ namespace FoodRush.Application.Validtor
             RuleFor(x => x.RestaurantId)
             .GreaterThan(0).WithMessage("RestaurantId must be a valid positive number.");
         }
+
+      
     }
+    
 }
