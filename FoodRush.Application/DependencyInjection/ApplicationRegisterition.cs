@@ -5,6 +5,8 @@
         public static IServiceCollection ApplicationReigster(this IServiceCollection services)
         {
             services.AddMediatR(m=> m.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+            services.AddAutoMapper(typeof(AutoMapping));
+            
             return services;
         }
     }
