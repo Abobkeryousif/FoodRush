@@ -6,9 +6,10 @@
         {
         }
 
-        public DbSet<Meal> Meals { get; set; }
-        public DbSet<Restaurant> Restaurants { get; set; }
-        public DbSet<Photo> Photos { get; set; }
+        public virtual DbSet<Meal> Meals { get; set; }
+        public virtual DbSet<Restaurant> Restaurants { get; set; }
+        public virtual DbSet<Photo> Photos { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
