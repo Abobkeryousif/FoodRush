@@ -13,12 +13,15 @@ namespace FoodRush.Domain.Entites
         public string Address { get; set; }
 
         [DataType(DataType.Date)]
+        [Range(1980,2020)]
         public DateTime BirthDate { get; set; }
         public string Password { get; set; }
 
         [NotMapped]
         [Compare("Password")]
         public string confirmPassword { get; set; }
+
+        public string? ProfileImageUrl { get; set; }
 
 
     }

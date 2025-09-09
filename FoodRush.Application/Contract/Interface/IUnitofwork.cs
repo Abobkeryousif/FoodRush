@@ -4,5 +4,6 @@
     {
         public IRestaurantRepository RestaurantRepository { get; }
         public IMealRepository MealRepository { get; }
+        public IUserRepository UserRepository { get; }
     }
 }

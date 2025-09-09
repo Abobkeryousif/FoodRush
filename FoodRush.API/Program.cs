@@ -48,6 +48,9 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
     };
 });
 
+//Conig Time With PostgerSQL
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
 
 var app = builder.Build();
 
