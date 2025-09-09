@@ -11,7 +11,7 @@ global using AutoMapper;
 global using FoodRush.Application.AutoMapper;
 global using FluentValidation;
 global using Microsoft.AspNetCore.Http;
-
+global using System.ComponentModel.DataAnnotations;
 
 
 

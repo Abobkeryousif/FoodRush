@@ -13,9 +13,12 @@ namespace FoodRush.Infrastructure.Implemention
             MealRepository = new MealRepository(_contaxt,mapper,photoService);
             _photoService = photoService;
             _mapper = mapper;
+            UserRepository = new UserRepository(_contaxt);
         }
         public IRestaurantRepository RestaurantRepository { get; }
 
         public IMealRepository MealRepository {  get; }
+
+        public IUserRepository UserRepository { get; }
     }
 }
