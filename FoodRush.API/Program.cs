@@ -18,18 +18,19 @@ builder.Services.AddSingleton<IFileProvider>(
 
 builder.Services.Configure<MailSetting>(builder.Configuration.GetSection("MailSetting"));
 
-//Apply Rate Limit 10 request for each IP Address And Block IP 10 Seconds For Save Our API From Dos Attack
-
+//Apply Global Rate Limit 10 request for each IP Address And Block IP 10 Seconds For Save Our API From Dos Attack
 builder.Services.AddRateLimiter(options =>
 {
     options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
-    options.AddPolicy("fixed", httpcontext => RateLimitPartition.GetFixedWindowLimiter(
-        partitionKey: httpcontext.Connection.RemoteIpAddress?.ToString(),
-        factory: _ => new FixedWindowRateLimiterOptions
-        {
-            PermitLimit = 10,
-            Window = TimeSpan.FromSeconds(10)
-        }));
+
+    options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(httpContext =>
+        RateLimitPartition.GetFixedWindowLimiter(
+            partitionKey: httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown",
+            factory: _ => new FixedWindowRateLimiterOptions
+            {
+                PermitLimit = 10,
+                Window = TimeSpan.FromSeconds(10)
+            }));
 });
 
 // FluentValidation

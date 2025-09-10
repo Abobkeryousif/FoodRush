@@ -12,6 +12,8 @@ namespace FoodRush.Domain.Entites
         public string City { get; set; }
         public string Address { get; set; }
 
+        public string Role { get; set; } = "USER";  
+
         [DataType(DataType.Date)]
         [Range(1980,2020)]
         public DateTime BirthDate { get; set; }
