@@ -14,11 +14,17 @@ namespace FoodRush.Infrastructure.Implemention
             _photoService = photoService;
             _mapper = mapper;
             UserRepository = new UserRepository(_contaxt);
+            OtpRepository = new OtpRepository(_contaxt);
+            RefreshTokenRepository = new RefreshTokenRepository(_contaxt);
         }
         public IRestaurantRepository RestaurantRepository { get; }
 
         public IMealRepository MealRepository {  get; }
 
         public IUserRepository UserRepository { get; }
+
+        public IOtpRepository OtpRepository { get; }
+
+        public IRefreshTokenRepository RefreshTokenRepository {  get; }
     }
 }

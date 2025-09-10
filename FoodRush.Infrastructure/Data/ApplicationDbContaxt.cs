@@ -10,7 +10,8 @@
         public virtual DbSet<Restaurant> Restaurants { get; set; }
         public virtual DbSet<Photo> Photos { get; set; }
         public virtual DbSet<User> Users { get; set; }
-
+        public virtual DbSet<OTP> OTPs { get; set; }
+        public virtual DbSet<RefreshToken> RefreshTokens { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

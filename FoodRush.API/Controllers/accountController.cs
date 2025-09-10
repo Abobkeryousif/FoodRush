@@ -12,6 +12,10 @@ namespace FoodRush.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> UserLogin(LoginUserDto userDto) =>
             Ok(await _sender.Send(new LoginUserCommand(userDto)));
+
+        [HttpPost("complete-login")]
+        public async Task<IActionResult> CompleteLogin(UserOtpDto userOtp) =>
+            Ok(await _sender.Send(new CompleteLoginCommand(userOtp)));
         
     }
 }

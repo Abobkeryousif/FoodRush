@@ -1,5 +1,4 @@
 ﻿
-
 namespace FoodRush.API.Controllers
 {
     [Route("api/[controller]")]
@@ -38,11 +37,9 @@ namespace FoodRush.API.Controllers
             return Ok(await _sender.Send(new PatchUserProfilePictureCommand(id, dto.File, env.WebRootPath)));
         }
 
-
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteUser(int id) =>
             Ok(await _sender.Send(new DeleteUserCommand(id)));
 
-       
     }
 }

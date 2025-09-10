@@ -29,10 +29,10 @@
             return await _context.SaveChangesAsync() > 0;
         }
 
-        public Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> OrderBy = null, string[] include = null)
+        public async Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> OrderBy = null, string[] include = null)
         {
             var result = Sync(filter, OrderBy, include);
-            return result.FirstOrDefaultAsync();
+            return await result.FirstOrDefaultAsync();
         }
 
         public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> OrderBy = null, string[] include = null)

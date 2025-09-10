@@ -3,6 +3,7 @@ using System;
 using FoodRush.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace FoodRush.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContaxt))]
-    partial class ApplicationDbContaxtModelSnapshot : ModelSnapshot
+    [Migration("20250909094254_Add-Otp-Table")]
+    partial class AddOtpTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -102,35 +105,6 @@ namespace FoodRush.Infrastructure.Migrations
                     b.HasIndex("mealId");
 
                     b.ToTable("Photos");
-                });
-
-            modelBuilder.Entity("FoodRush.Domain.Entites.RefreshToken", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime>("ExpierOn")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<DateTime?>("RevokeOn")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<string>("Token")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("userId")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("userId");
-
-                    b.ToTable("RefreshTokens");
                 });
 
             modelBuilder.Entity("FoodRush.Domain.Entites.Restaurant", b =>
@@ -242,17 +216,6 @@ namespace FoodRush.Infrastructure.Migrations
                     b.Navigation("Meal");
                 });
 
-            modelBuilder.Entity("FoodRush.Domain.Entites.RefreshToken", b =>
-                {
-                    b.HasOne("FoodRush.Domain.Entites.User", "User")
-                        .WithMany("refreshTokens")
-                        .HasForeignKey("userId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("FoodRush.Domain.Entites.Meal", b =>
                 {
                     b.Navigation("Photos");
@@ -261,11 +224,6 @@ namespace FoodRush.Infrastructure.Migrations
             modelBuilder.Entity("FoodRush.Domain.Entites.Restaurant", b =>
                 {
                     b.Navigation("Meals");
-                });
-
-            modelBuilder.Entity("FoodRush.Domain.Entites.User", b =>
-                {
-                    b.Navigation("refreshTokens");
                 });
 #pragma warning restore 612, 618
         }

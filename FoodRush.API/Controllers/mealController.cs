@@ -4,6 +4,7 @@ namespace FoodRush.API.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [EnableRateLimiting("fixed")]
+    [Authorize]
     public class mealController : ControllerBase
     {
         private readonly ISender _sender;
