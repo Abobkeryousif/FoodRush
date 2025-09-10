@@ -21,7 +21,8 @@ namespace FoodRush.Infrastructure.Implemention
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Email, user.Email)
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.Role,user.Role)
             };
 
             var expier = DateTime.UtcNow.AddMinutes(_jwtOptions.ExpiertionTimeInMinutes);

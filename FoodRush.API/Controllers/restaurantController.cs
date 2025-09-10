@@ -3,7 +3,8 @@ namespace FoodRush.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [EnableRateLimiting("fixed")]
+    [ValidateModel]
+
     public class restaurantController : ControllerBase
     {
         private readonly ISender _sender;
@@ -11,22 +12,27 @@ namespace FoodRush.API.Controllers
             _sender = sender;
 
         [HttpPost]
+        [Authorize(Roles = "ADMIN,SUPERADMIN")]
         public async Task<IActionResult> CreateRestaurant(RestaurantDto restaurantDto) =>
             Ok(await _sender.Send(new CreateRestaurantCommand(restaurantDto)));
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetAllRestaurants() =>
             Ok(await _sender.Send(new GetRestaurantsQuery()));
 
         [HttpGet("{id:int}")]
+        [Authorize(Roles = "ADMIN,SUPERADMIN")]
         public async Task<IActionResult> GetRestaurantById(int id) =>
             Ok(await _sender.Send(new GetByIdRestaurantQuery(id)));
 
         [HttpPut("{id:int}")]
+        [Authorize(Roles = "ADMIN,SUPERADMIN")]
         public async Task<IActionResult> UpdateRestaurant(int id,[FromBody] RestaurantDto restaurantDto) =>
             Ok(await _sender.Send(new UpdateRestaurantCommand(id,restaurantDto)));
 
         [HttpDelete("{id:int}")]
+        [Authorize(Roles = "ADMIN,SUPERADMIN")]
         public async Task<IActionResult> DeleteRestaurant(int id) =>
              Ok(await _sender.Send(new DeleteRestaurantCommand(id)));
     }

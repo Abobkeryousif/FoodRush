@@ -28,6 +28,7 @@ namespace FoodRush.Application.Feature.Command.Users
                 Address = request.userDto.Address,
                 BirthDate = request.userDto.BirthDate,
                 Password = hashPassword,
+                Role = "USER"
             };
 
             await _unitofwork.UserRepository.CreateAsync(user);
