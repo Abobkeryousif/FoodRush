@@ -13,7 +13,13 @@ global using AutoMapper;
 global using FoodRush.Application.Contract.Service;
 global using Microsoft.AspNetCore.Http;
 global using Microsoft.Extensions.FileProviders;
-
-
-
+global using FoodRush.Domain.Common;
+global using Microsoft.Extensions.Options;
+global using MailKit.Net.Smtp;
+global using MimeKit;
+global using Microsoft.IdentityModel.Tokens;
+global using System.IdentityModel.Tokens.Jwt;
+global using System.Security.Claims;
+global using System.Security.Cryptography;
+global using System.Text;
 

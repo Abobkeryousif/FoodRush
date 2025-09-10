@@ -15,3 +15,6 @@ global using FoodRush.Application.Feature.Query.Meals;
 global using FoodRush.Application.Feature.Command.Users;
 global using FoodRush.Application.Feature.Command.Account;
 global using FoodRush.Application.Feature.Query.Users;
+global using FoodRush.Domain.Common;
+global using Microsoft.AspNetCore.Authentication.JwtBearer;
+global using Microsoft.AspNetCore.Authorization;

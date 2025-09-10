@@ -46,4 +46,7 @@ namespace FoodRush.Application.DTOs
         public IFormFile File { get; set; } = default!;
     }
 
+
+    public record UserOtpDto(string otp);
+    
 }

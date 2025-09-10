@@ -20,9 +20,8 @@ namespace FoodRush.Domain.Entites
         [NotMapped]
         [Compare("Password")]
         public string confirmPassword { get; set; }
-
         public string? ProfileImageUrl { get; set; }
-
+        public List<RefreshToken> refreshTokens { get; set; } = new List<RefreshToken>();
 
     }
 }
