@@ -49,5 +49,7 @@ namespace FoodRush.Application.DTOs
 
     public record UserOtpDto(string otp);
     public record UserRoleDto(string Role);
+
+    public record ResendOtpInUserEmail(string email);
     
 }

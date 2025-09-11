@@ -6,6 +6,7 @@
         public IMealRepository MealRepository { get; }
         public IUserRepository UserRepository { get; }
         public IOtpRepository OtpRepository { get; }
-        IRefreshTokenRepository RefreshTokenRepository { get; }
+        public IRefreshTokenRepository RefreshTokenRepository { get; }
+        public IVerficiationRepository VerficiationRepository { get; }
     }
 }

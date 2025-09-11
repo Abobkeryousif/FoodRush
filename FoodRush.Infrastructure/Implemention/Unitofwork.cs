@@ -16,6 +16,7 @@ namespace FoodRush.Infrastructure.Implemention
             UserRepository = new UserRepository(_contaxt);
             OtpRepository = new OtpRepository(_contaxt);
             RefreshTokenRepository = new RefreshTokenRepository(_contaxt);
+            VerficiationRepository = new VerficiationRepository(_contaxt);
         }
         public IRestaurantRepository RestaurantRepository { get; }
 
@@ -26,5 +27,7 @@ namespace FoodRush.Infrastructure.Implemention
         public IOtpRepository OtpRepository { get; }
 
         public IRefreshTokenRepository RefreshTokenRepository {  get; }
+
+        public IVerficiationRepository VerficiationRepository { get; }
     }
 }
