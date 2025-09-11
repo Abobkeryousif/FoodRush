@@ -1,5 +1,4 @@
 ﻿
-using FoodRush.Application.Contract.Service;
 
 namespace FoodRush.Application.Feature.Command.Account
 {
