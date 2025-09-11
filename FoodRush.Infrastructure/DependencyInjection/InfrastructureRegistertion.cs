@@ -17,6 +17,13 @@ namespace FoodRush.Infrastructure.DependencyInjection
             services.AddTransient<ISendEmailService, SendEmailService>();
             services.AddScoped<ITokenSerivce, TokenService>();
 
+            //Apply Redis Connection
+            services.AddSingleton<IConnectionMultiplexer>(i =>
+            {
+                var conig = ConfigurationOptions.Parse(configuration.GetConnectionString("redis"));
+                return ConnectionMultiplexer.Connect(conig);
+            });
+
             return services;
         }
     }

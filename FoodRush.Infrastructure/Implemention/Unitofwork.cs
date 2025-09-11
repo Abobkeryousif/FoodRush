@@ -6,8 +6,10 @@ namespace FoodRush.Infrastructure.Implemention
         private readonly ApplicationDbContaxt _contaxt;
         private readonly IMapper _mapper;
         private readonly IPhotoService _photoService;
-        public Unitofwork(ApplicationDbContaxt contaxt, IPhotoService photoService, IMapper mapper)
+        private readonly IDatabase _database;
+        public Unitofwork(ApplicationDbContaxt contaxt, IPhotoService photoService, IMapper mapper,IConnectionMultiplexer redis)
         {
+            _database = redis.GetDatabase();
             _contaxt = contaxt;
             RestaurantRepository = new RestaurantRepository(_contaxt);
             MealRepository = new MealRepository(_contaxt,mapper,photoService);
@@ -17,6 +19,7 @@ namespace FoodRush.Infrastructure.Implemention
             OtpRepository = new OtpRepository(_contaxt);
             RefreshTokenRepository = new RefreshTokenRepository(_contaxt);
             VerficiationRepository = new VerficiationRepository(_contaxt);
+            BasketRepository = new BasketRepository(redis);
         }
         public IRestaurantRepository RestaurantRepository { get; }
 
@@ -29,5 +32,7 @@ namespace FoodRush.Infrastructure.Implemention
         public IRefreshTokenRepository RefreshTokenRepository {  get; }
 
         public IVerficiationRepository VerficiationRepository { get; }
+
+        public IBasketRepository BasketRepository {  get; }
     }
 }

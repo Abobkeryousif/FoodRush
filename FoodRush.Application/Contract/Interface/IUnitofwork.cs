@@ -8,5 +8,6 @@
         public IOtpRepository OtpRepository { get; }
         public IRefreshTokenRepository RefreshTokenRepository { get; }
         public IVerficiationRepository VerficiationRepository { get; }
+        public IBasketRepository BasketRepository { get; }
     }
 }
