@@ -24,4 +24,4 @@ global using System.Security.Cryptography;
 global using System.Text;
 global using StackExchange.Redis;
 global using System.Text.Json;
-
+global using FoodRush.Domain.Entites.Order;
