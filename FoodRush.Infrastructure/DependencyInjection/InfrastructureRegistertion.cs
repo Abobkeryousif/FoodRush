@@ -24,6 +24,8 @@ namespace FoodRush.Infrastructure.DependencyInjection
                 return ConnectionMultiplexer.Connect(conig);
             });
 
+            services.AddScoped<IOrderService, OrderService>();
+
             return services;
         }
     }

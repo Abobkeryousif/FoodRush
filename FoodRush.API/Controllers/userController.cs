@@ -3,7 +3,6 @@ namespace FoodRush.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [ValidateModel]
     
     public class userController : ControllerBase
     {
@@ -12,6 +11,7 @@ namespace FoodRush.API.Controllers
             _sender = sender;
 
         [HttpPost("register")]
+        [ValidateModel]
         [AllowAnonymous]
         public async Task<IActionResult> UserRegister(UserDto userDto)
         {
@@ -38,17 +38,21 @@ namespace FoodRush.API.Controllers
 
         [HttpPut("{id:int}")]
         [Authorize(Roles = "USER,ADMIN,SUPERADMIN")]
+        [ValidateModel]
         public async Task<IActionResult> UpdateUser(int id,UserDto userDto) =>
             Ok(await _sender.Send(new UpdateUserCommand(id,userDto)));
 
         [HttpPatch("{id:int}")]
         [Authorize(Roles = "USER,ADMIN,SUPERADMIN")]
+        [ValidateModel]
+
         public async Task<IActionResult> UpdateUserEmail(int id,UpdateUserEmailDto userDto) =>
             Ok(await _sender.Send(new PatchUserEmailCommand(id,userDto)));
 
 
        [HttpPatch("{id:int}/profile-picture")]
         [Authorize(Roles = "USER,ADMIN,SUPERADMIN")]
+        [ValidateModel]
         public async Task<IActionResult> PatchProfilePicture(int id,[FromForm] UpdateUserProfilePictureDto dto,[FromServices] IWebHostEnvironment env)
         {
             return Ok(await _sender.Send(new PatchUserProfilePictureCommand(id, dto.File, env.WebRootPath)));

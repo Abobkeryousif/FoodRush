@@ -22,3 +22,5 @@ global using FoodRush.API.Filters;
 global using FoodRush.Domain.Entites;
 global using FoodRush.Application.Feature.Command.Baskets;
 global using FoodRush.Application.Feature.Query.Baskets;
+global using System.Security.Claims;
+global using FoodRush.Application.Contract.Service;

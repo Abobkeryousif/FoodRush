@@ -16,4 +16,5 @@ global using FoodRush.Application.Contract.Service;
 global using Microsoft.Extensions.Configuration;
 global using System.Security.Cryptography;
 global using FoodRush.Domain.Common.Enum;
+global using FoodRush.Domain.Entites.Order;
 
