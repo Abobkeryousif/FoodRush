@@ -45,11 +45,12 @@ namespace FoodRush.Infrastructure.Implemention
             var shippingAddress = _mapper.Map<ShippingAddress>(orderDto.ShippingAddress)
                                   ?? throw new Exception("Invalid shipping address.");
 
-            var order = new Orders(buyerEmail, subTotal, shippingAddress, deliveryMethod, orderItems);
+            var order = new Orders(buyerEmail, subTotal, shippingAddress, deliveryMethod, orderItems,basket.paymentIntentId);
 
             await _contaxt.Orders.AddAsync(order);
             await _contaxt.SaveChangesAsync();
 
+            await _unitofwork.BasketRepository.DeleteBasketAsync(orderDto.basketId);
             return order;
         }
 

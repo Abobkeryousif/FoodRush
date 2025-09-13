@@ -42,7 +42,6 @@
             var info = _fileProvider.GetFileInfo(src);
             var root = info.PhysicalPath;
             File.Delete(root);
-
         }
     }
 }
