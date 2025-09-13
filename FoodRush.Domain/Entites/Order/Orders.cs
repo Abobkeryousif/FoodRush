@@ -7,6 +7,15 @@ namespace FoodRush.Domain.Entites.Order
         {
             
         }
+        public Orders(string BauyerEmail, decimal SubTotal, ShippingAddress ShippingAddress, Delivery delivery, IReadOnlyList<OrderItem> OrderItems, string paymentIntentId)
+        {
+            bauyerEmail = BauyerEmail;
+            subTotal = SubTotal;
+            shippingAddress = ShippingAddress;
+            Delivery = delivery;
+            orderItems = OrderItems;
+            this.paymentIntentId = paymentIntentId;
+        }
         public Orders(string BauyerEmail, decimal SubTotal, ShippingAddress ShippingAddress, Delivery delivery, IReadOnlyList<OrderItem> OrderItems)
         {
             bauyerEmail = BauyerEmail;
@@ -14,6 +23,7 @@ namespace FoodRush.Domain.Entites.Order
             shippingAddress = ShippingAddress;
             Delivery = delivery;
             orderItems = OrderItems;
+            
         }
 
         public int Id { get; set; }
@@ -21,6 +31,7 @@ namespace FoodRush.Domain.Entites.Order
         public decimal subTotal { get; set; } 
         public DateTime orderDate { get; set; } = DateTime.Now;
         public ShippingAddress shippingAddress { get; set; }
+        public string paymentIntentId { get; set; }
         public Delivery Delivery { get; set; }
         public IReadOnlyList<OrderItem> orderItems { get; set; }
         public Status status { get; set; } = Status.Pending;

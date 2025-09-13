@@ -16,6 +16,7 @@ namespace FoodRush.Infrastructure.DependencyInjection
             services.AddSingleton<IPhotoService, PhotoService>();
             services.AddTransient<ISendEmailService, SendEmailService>();
             services.AddScoped<ITokenSerivce, TokenService>();
+            services.AddScoped<IPaymentService, PaymentService>();
 
             //Apply Redis Connection
             services.AddSingleton<IConnectionMultiplexer>(i =>
