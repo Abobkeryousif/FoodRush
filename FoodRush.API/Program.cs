@@ -1,8 +1,4 @@
-using FoodRush.Application.Contract.Service;
-using FoodRush.Infrastructure.Implemention;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.Extensions.FileProviders;
-using System.Text;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -75,10 +71,23 @@ builder.Services.AddAuthentication(opt =>
     };
 });
 
+
+//Logging 
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .WriteTo.Console()
+    .WriteTo.File("Logs/log-.txt",rollingInterval: RollingInterval.Day)
+    .Enrich.FromLogContext()
+    .CreateLogger();
+
+builder.Host.UseSerilog();
+
 builder.Services.AddScoped<ITokenSerivce, TokenService>();
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
+
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {
