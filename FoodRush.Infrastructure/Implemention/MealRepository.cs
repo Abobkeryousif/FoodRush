@@ -32,10 +32,62 @@ namespace FoodRush.Infrastructure.Implemention
             return true;
         }
 
-        public async Task<List<GetMealDto>> GetAllMealAsync()
+        public Task<List<GetMealDto>> GetAllMealAsyncV1()
         {
-            var result = await _contaxt.Meals
+            var result = _contaxt.Meals.Select(m => new GetMealDto
+            {
+                Name = m.Name,
+                Description = m.Description,
+                Price = m.Price,
+                IsAvailable = m.IsAvailable,
+                Restaurant = new RestaurantDto
+                {
+                    Name = m.Restaurant.Name,
+                    Address = m.Restaurant.Address,
+                    phoneNumber = m.Restaurant.phoneNumber,
+                    Rating = m.Restaurant.Rating
+                }
+            })
+                .AsNoTracking()
+                .ToListAsync();
+            return result;
+        }
+
+        public async Task<List<GetMealDto>> GetAllMealAsyncV2(QueryParameters parameters)
+        {
+            var query = _contaxt.Meals
                 .Include(m => m.Restaurant)
+                .AsQueryable();
+
+            // Filtering
+            if (!string.IsNullOrWhiteSpace(parameters.FilterOn) && !string.IsNullOrWhiteSpace(parameters.FilterQuery))
+            {
+                if (parameters.FilterOn.Equals("MealName", StringComparison.OrdinalIgnoreCase))
+                    query = query.Where(m => m.Name.Contains(parameters.FilterQuery));
+
+                else if (parameters.FilterOn.Equals("RestaurantName", StringComparison.OrdinalIgnoreCase))
+                    query = query.Where(m => m.Restaurant.Name.Contains(parameters.FilterQuery));
+            }
+
+            //Sorting
+            if (!string.IsNullOrWhiteSpace(parameters.SortBy))
+            {
+                if (parameters.SortBy.Equals("MealName", StringComparison.OrdinalIgnoreCase))
+                    query = parameters.IsAscending ? query.OrderBy(m => m.Name) : query.OrderByDescending(m => m.Name);
+
+                else if (parameters.SortBy.Equals("Price", StringComparison.OrdinalIgnoreCase))
+                    query = parameters.IsAscending ? query.OrderBy(m => m.Price) : query.OrderByDescending(m => m.Price);
+
+                else if (parameters.SortBy.Equals("RestaurantName", StringComparison.OrdinalIgnoreCase))
+                    query = parameters.IsAscending ? query.OrderBy(m => m.Restaurant.Name) : query.OrderByDescending(m => m.Restaurant.Name);
+            }
+
+            //Pagination
+            var skip = (parameters.PageNumber - 1) * parameters.PageSize;
+
+            var result = await query
+                .Skip(skip)
+                .Take(parameters.PageSize)
                 .Select(m => new GetMealDto
                 {
                     Name = m.Name,

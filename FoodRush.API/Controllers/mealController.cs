@@ -1,9 +1,9 @@
-﻿
-namespace FoodRush.API.Controllers
+﻿namespace FoodRush.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     [ValidateModel]
+    [ApiVersion("1")]
     public class mealController : ControllerBase
     {
         private readonly ISender _sender;
