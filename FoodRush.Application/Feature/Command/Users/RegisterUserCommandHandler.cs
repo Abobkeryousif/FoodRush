@@ -43,9 +43,7 @@
             _logger.LogInformation("User registered successfully with Email: {Email}", user.Email);
 
             return new ApiResponse<string>(
-                HttpStatusCode.OK,
-                "Success",
-                $"Register Complete!: {user.userName}"
+                HttpStatusCode.OK,"Success",$"Register Complete!: {user.userName}"
             );
         }
     }
