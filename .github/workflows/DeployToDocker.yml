@@ -42,7 +42,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/foodrush-api:latest .
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/foodrush-api:latest ./FoodRush.API
 
       - name: Push Docker image
         run: |
