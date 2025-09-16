@@ -19,13 +19,13 @@ jobs:
           dotnet-version: 9.0.x
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore ./FoodRush.API/FoodRush.API.csproj
 
       - name: Build
-        run: dotnet build --no-restore --configuration Release
+        run: dotnet build ./FoodRush.API/FoodRush.API.csproj --no-restore --configuration Release
 
       - name: Test
-        run: dotnet test --no-build --verbosity normal
+        run: dotnet test ./FoodRush.API/FoodRush.API.csproj --no-build --verbosity normal
 
   docker-build-and-push:
     needs: build-and-test
