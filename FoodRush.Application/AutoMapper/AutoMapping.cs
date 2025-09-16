@@ -10,6 +10,7 @@ namespace FoodRush.Application.AutoMapper
             CreateMap<User, UserDto>().ReverseMap();
             CreateMap<User, GetUserDto>().ReverseMap();
             CreateMap<ShippingAddress, ShippingAddressDto>().ReverseMap();
+            CreateMap<Review, GetAndUpdateReviewDto>().ReverseMap();
         }
     }
 }

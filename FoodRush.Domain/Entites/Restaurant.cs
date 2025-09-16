@@ -12,5 +12,6 @@ namespace FoodRush.Domain.Entites
 
         // Navigation property
         public List<Meal> Meals { get; set; } = new();
+        public List<Review> Reviews { get; set; } = new();
     }
 }

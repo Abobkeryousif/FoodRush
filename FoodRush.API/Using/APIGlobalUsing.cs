@@ -33,4 +33,5 @@ global using FoodRush.Application.Common;
 global using System.Net;
 global using System.Text.Json;
 global using Asp.Versioning;
-global using Asp.Versioning.Conventions;
+global using FoodRush.Application.Feature.Command.Reviews;
+global using FoodRush.Application.Feature.Query.Reviews;

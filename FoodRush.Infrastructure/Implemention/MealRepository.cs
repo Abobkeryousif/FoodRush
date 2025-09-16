@@ -40,7 +40,7 @@ namespace FoodRush.Infrastructure.Implemention
                 Description = m.Description,
                 Price = m.Price,
                 IsAvailable = m.IsAvailable,
-                Restaurant = new RestaurantDto
+                Restaurant = new GetRestaurantDto
                 {
                     Name = m.Restaurant.Name,
                     Address = m.Restaurant.Address,
@@ -94,7 +94,7 @@ namespace FoodRush.Infrastructure.Implemention
                     Description = m.Description,
                     Price = m.Price,
                     IsAvailable = m.IsAvailable,
-                    Restaurant = new RestaurantDto
+                    Restaurant = new GetRestaurantDto
                     {
                         Name = m.Restaurant.Name,
                         Address = m.Restaurant.Address,

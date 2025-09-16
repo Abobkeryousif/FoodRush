@@ -2,23 +2,23 @@
 
 namespace FoodRush.Application.Feature.Query.Restaurants
 {
-    public record GetTopRatedRestaurantsQuery(int count) : IRequest<ApiResponse<List<RestaurantDto>>>;
-    public class GetTopRatedRestaurantsQueryHandler : IRequestHandler<GetTopRatedRestaurantsQuery, ApiResponse<List<RestaurantDto>>>
+    public record GetTopRatedRestaurantsQuery(int count) : IRequest<ApiResponse<List<GetRestaurantDto>>>;
+    public class GetTopRatedRestaurantsQueryHandler : IRequestHandler<GetTopRatedRestaurantsQuery, ApiResponse<List<GetRestaurantDto>>>
     {
         private readonly IUnitofwork _unitofwork;
         public GetTopRatedRestaurantsQueryHandler(IUnitofwork unitofwork)=>
             _unitofwork = unitofwork;
         
-        public async Task<ApiResponse<List<RestaurantDto>>> Handle(GetTopRatedRestaurantsQuery request, CancellationToken cancellationToken)
+        public async Task<ApiResponse<List<GetRestaurantDto>>> Handle(GetTopRatedRestaurantsQuery request, CancellationToken cancellationToken)
         {
             var restaurants = await _unitofwork.RestaurantRepository.GetAllAsync();
 
             if (restaurants == null || request.count == 0)
-                return new ApiResponse<List<RestaurantDto>>(HttpStatusCode.NotFound, "No Restaurants Found");
+                return new ApiResponse<List<GetRestaurantDto>>(HttpStatusCode.NotFound, "No Restaurants Found");
 
             var topRatedRestaurants = restaurants.OrderByDescending(rt => rt.Rating)
                 .Take(request.count)
-                .Select(r => new RestaurantDto
+                .Select(r => new GetRestaurantDto
                 {
                     Name = r.Name,
                     Address = r.Address,
@@ -27,7 +27,7 @@ namespace FoodRush.Application.Feature.Query.Restaurants
                     Rating = r.Rating
                 }).ToList();
 
-            return new ApiResponse<List<RestaurantDto>>(HttpStatusCode.OK, "Success", topRatedRestaurants);
+            return new ApiResponse<List<GetRestaurantDto>>(HttpStatusCode.OK, "Success", topRatedRestaurants);
         }
     }
 }

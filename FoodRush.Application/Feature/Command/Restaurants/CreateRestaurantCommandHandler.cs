@@ -28,7 +28,6 @@
                 Address = request.RestaurantDto.Address,
                 phoneNumber = request.RestaurantDto.phoneNumber,
                 isOpen = request.RestaurantDto.isOpen,
-                Rating = request.RestaurantDto.Rating,
             };
 
             await _unitofwork.RestaurantRepository.CreateAsync(restaurant);

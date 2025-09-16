@@ -1,7 +1,7 @@
 ﻿namespace FoodRush.Application.Feature.Query.Restaurants
 {
-    public record GetRestaurantsQuery : IRequest<ApiResponse<List<RestaurantDto>>>;
-    public class GetRestaurantsQueryHandler : IRequestHandler<GetRestaurantsQuery, ApiResponse<List<RestaurantDto>>>
+    public record GetRestaurantsQuery : IRequest<ApiResponse<List<GetRestaurantDto>>>;
+    public class GetRestaurantsQueryHandler : IRequestHandler<GetRestaurantsQuery, ApiResponse<List<GetRestaurantDto>>>
     {
         private readonly IUnitofwork _unitofwork;
 
@@ -9,13 +9,13 @@
             _unitofwork = unitofwork;
         
 
-        async Task<ApiResponse<List<RestaurantDto>>> IRequestHandler<GetRestaurantsQuery, ApiResponse<List<RestaurantDto>>>.Handle(GetRestaurantsQuery request, CancellationToken cancellationToken)
+        async Task<ApiResponse<List<GetRestaurantDto>>> IRequestHandler<GetRestaurantsQuery, ApiResponse<List<GetRestaurantDto>>>.Handle(GetRestaurantsQuery request, CancellationToken cancellationToken)
         {
             var restaurants = await _unitofwork.RestaurantRepository.GetAllAsync();
             if (restaurants.Count == 0)
-                return new ApiResponse<List<RestaurantDto>>(HttpStatusCode.NotFound,"Not Found Any Restaurant");
+                return new ApiResponse<List<GetRestaurantDto>>(HttpStatusCode.NotFound,"Not Found Any Restaurant");
 
-            var restaurantDto = restaurants.Select(r=> new RestaurantDto
+            var restaurantDto = restaurants.Select(r=> new GetRestaurantDto
             {
                 Name = r.Name,
                 Address = r.Address,
@@ -24,7 +24,7 @@
                 Rating = r.Rating,
             }).ToList();
 
-            return new ApiResponse<List<RestaurantDto>>(HttpStatusCode.OK,"Success",restaurantDto);
+            return new ApiResponse<List<GetRestaurantDto>>(HttpStatusCode.OK,"Success",restaurantDto);
         }
     }
 }

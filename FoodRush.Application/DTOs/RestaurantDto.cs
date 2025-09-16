@@ -6,6 +6,11 @@
         public string Address { get; set; }
         public string phoneNumber { get; set; }
         public bool isOpen { get; set; } = true;
+        
+    }
+
+    public record GetRestaurantDto : RestaurantDto
+    {
         public double? Rating { get; set; }
     }
 
