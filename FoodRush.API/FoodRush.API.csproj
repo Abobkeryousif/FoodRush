@@ -38,4 +38,8 @@
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include=".github\workflows\build-and-test.yml" />
+  </ItemGroup>
+
 </Project>
