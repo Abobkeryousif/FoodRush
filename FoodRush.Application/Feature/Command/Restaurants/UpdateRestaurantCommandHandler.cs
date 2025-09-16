@@ -18,7 +18,6 @@ namespace FoodRush.Application.Feature.Command.Restaurants
             restaurant.Address = request.restaurantDto.Address;
             restaurant.phoneNumber = request.restaurantDto.phoneNumber;
             restaurant.isOpen = request.restaurantDto.isOpen;
-            restaurant.Rating = request.restaurantDto.Rating;
 
             await _unitofwork.RestaurantRepository.UpdateAsync(restaurant);
             return new ApiResponse<RestaurantDto>(HttpStatusCode.OK,"Success",request.restaurantDto);

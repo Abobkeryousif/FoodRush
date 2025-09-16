@@ -20,6 +20,7 @@ namespace FoodRush.Infrastructure.Implemention
             RefreshTokenRepository = new RefreshTokenRepository(_contaxt);
             VerficiationRepository = new VerficiationRepository(_contaxt);
             BasketRepository = new BasketRepository(redis);
+            ReviewRepository = new ReviewRepository(_contaxt);
         }
         public IRestaurantRepository RestaurantRepository { get; }
 
@@ -34,5 +35,7 @@ namespace FoodRush.Infrastructure.Implemention
         public IVerficiationRepository VerficiationRepository { get; }
 
         public IBasketRepository BasketRepository {  get; }
+
+        public IReviewRepository ReviewRepository {  get; }
     }
 }
