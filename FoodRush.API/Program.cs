@@ -97,12 +97,11 @@ builder.Services.AddApiVersioning(options =>
     options.AssumeDefaultVersionWhenUnspecified = true;
 });
 
-
-
 builder.Services.AddScoped<ITokenSerivce, TokenService>();
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
+
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
