@@ -1,9 +1,9 @@
-﻿namespace FoodRush.API.Controllers
+﻿
+namespace FoodRush.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     [ValidateModel]
-    [ApiVersion("1")]
     public class mealController : ControllerBase
     {
         private readonly ISender _sender;
@@ -39,6 +39,6 @@
         [Authorize(Roles = "ADMIN,SUPERADMIN")]
         public async Task<IActionResult> DeleteMeal(int id) =>
             Ok(await _sender.Send(new DeleteMealCommand(id)));
-        
+
     }
 }

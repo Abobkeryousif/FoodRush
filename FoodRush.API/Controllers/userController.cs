@@ -18,7 +18,6 @@ namespace FoodRush.API.Controllers
             return Ok(await _sender.Send(new RegisterUserCommand(userDto)));
         }
 
-
         [HttpGet]
         [Authorize(Roles = "ADMIN,SUPERADMIN")]
         public async Task<IActionResult> GetAllUsers()
@@ -35,7 +34,6 @@ namespace FoodRush.API.Controllers
             return Ok(await _sender.Send(new GetUserByIdQuery(id)));
         }
 
-
         [HttpPut("{id:int}")]
         [Authorize(Roles = "USER,ADMIN,SUPERADMIN")]
         [ValidateModel]
@@ -43,15 +41,14 @@ namespace FoodRush.API.Controllers
             Ok(await _sender.Send(new UpdateUserCommand(id,userDto)));
 
         [HttpPatch("{id:int}")]
-        [Authorize(Roles = "USER,ADMIN,SUPERADMIN")]
+        [Authorize(Roles = "USER")]
         [ValidateModel]
-
         public async Task<IActionResult> UpdateUserEmail(int id,UpdateUserEmailDto userDto) =>
             Ok(await _sender.Send(new PatchUserEmailCommand(id,userDto)));
 
 
        [HttpPatch("{id:int}/profile-picture")]
-        [Authorize(Roles = "USER,ADMIN,SUPERADMIN")]
+        [Authorize(Roles = "USER")]
         [ValidateModel]
         public async Task<IActionResult> PatchProfilePicture(int id,[FromForm] UpdateUserProfilePictureDto dto,[FromServices] IWebHostEnvironment env)
         {
@@ -64,7 +61,6 @@ namespace FoodRush.API.Controllers
         {
             return Ok(await _sender.Send(new PatchUserRoleCommand(userId,Role)));
         }
-
 
         [HttpDelete("{id:int}")]
         [Authorize(Roles = "SUPERADMIN")]
