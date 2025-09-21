@@ -82,12 +82,20 @@ namespace FoodRush.Infrastructure.Implemention
                     query = parameters.IsAscending ? query.OrderBy(m => m.Restaurant.Name) : query.OrderByDescending(m => m.Restaurant.Name);
             }
 
-            //Pagination
-            var skip = (parameters.PageNumber - 1) * parameters.PageSize;
+
+            // Pagination with Default & MaxPageSize
+            const int maxPageSize = 20;
+            const int defaultPageSize = 10;
+
+            var pageSize = parameters.PageSize <= 0 ? defaultPageSize : (parameters.PageSize > maxPageSize ? maxPageSize : parameters.PageSize);
+            var pageNumber = parameters.PageNumber <= 0 ? 1 : parameters.PageNumber;
+
+            var skip = (pageNumber - 1) * pageSize;
 
             var result = await query
+                .AsNoTracking()
                 .Skip(skip)
-                .Take(parameters.PageSize)
+                .Take(pageSize)
                 .Select(m => new GetMealDto
                 {
                     Name = m.Name,
@@ -102,7 +110,6 @@ namespace FoodRush.Infrastructure.Implemention
                         Rating = m.Restaurant.Rating
                     }
                 })
-                .AsNoTracking()
                 .ToListAsync();
 
             return result;
