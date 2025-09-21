@@ -16,7 +16,7 @@
 
         public async Task<ApiResponse<string>> Handle(PatchUserProfilePictureCommand request, CancellationToken cancellationToken)
         {
-            var user = await _unitOfWork.UserRepository.FirstOrDefaultAsync(u => u.Id == request.Id);
+            var user = await _unitOfWork.UserRepository.GetByIdAsync(request.Id);
             if (user == null)
                 return new ApiResponse<string>(HttpStatusCode.NotFound, $"User not found with ID: {request.Id}");
 

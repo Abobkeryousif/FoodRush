@@ -7,5 +7,6 @@ namespace FoodRush.Application.Contract.Interface
         Task<bool> UpdateAsync(T entity);
         IQueryable<T> Sync(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> OrderBy = null, string[] include = null);
         Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> OrderBy = null, string[] include = null);
+        Task<T> GetByIdAsync(int Id);
     }
 }

@@ -12,7 +12,7 @@ namespace FoodRush.Application.Feature.Command.Users
         
         public async Task<ApiResponse<string>> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
         {
-            var deleteUser = await _unitofwork.UserRepository.FirstOrDefaultAsync(u=> u.Id == request.id);
+            var deleteUser = await _unitofwork.UserRepository.GetByIdAsync(request.id);
             if (deleteUser == null)
                 return new ApiResponse<string>(HttpStatusCode.NotFound,$"Not Found With ID: {request.id}");
 

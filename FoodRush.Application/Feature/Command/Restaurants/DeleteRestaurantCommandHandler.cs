@@ -12,7 +12,7 @@ namespace FoodRush.Application.Feature.Command.Restaurants
         
         public async Task<ApiResponse<string>> Handle(DeleteRestaurantCommand request, CancellationToken cancellationToken)
         {
-            var restaurant = await _unitofwork.RestaurantRepository.FirstOrDefaultAsync(r=> r.Id == request.id);
+            var restaurant = await _unitofwork.RestaurantRepository.GetByIdAsync(request.id);
             if (restaurant == null)
                 return new ApiResponse<string>(HttpStatusCode.NotFound,$"Not Found With ID: {request.id}");
 

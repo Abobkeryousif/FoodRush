@@ -14,7 +14,7 @@ namespace FoodRush.Application.Feature.Command.Users
 
         public async Task<ApiResponse<string>> Handle(PatchUserRoleCommand request, CancellationToken cancellationToken)
         {
-            var user = await _unitofwork.UserRepository.FirstOrDefaultAsync(u=> u.Id == request.userId);
+            var user = await _unitofwork.UserRepository.GetByIdAsync(request.userId);
             if (user == null)
                 return new ApiResponse<string>(HttpStatusCode.NotFound,$"Not Found With ID: {request.userId}");
 
