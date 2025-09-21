@@ -41,5 +41,10 @@ namespace FoodRush.Infrastructure.Implemention
             _context.Set<T>().Update(entity);
             return await _context.SaveChangesAsync() > 0;
         }
+
+        public async Task<T> GetByIdAsync(int Id)
+        {
+            return await _context.Set<T>().FindAsync(Id);
+        }
     }
 }

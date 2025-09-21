@@ -16,7 +16,7 @@ namespace FoodRush.Application.Feature.Command.Reviews
 
         public async Task<ApiResponse<GetAndUpdateReviewDto>> Handle(UpdateReviewCommand request, CancellationToken cancellationToken)
         {
-            var review = await _unitofwork.ReviewRepository.FirstOrDefaultAsync(r=> r.Id == request.reviewId);
+            var review = await _unitofwork.ReviewRepository.GetByIdAsync(request.reviewId);
             if (review == null)
                 return new ApiResponse<GetAndUpdateReviewDto>(HttpStatusCode.NotFound, $"Review with ID {request.reviewId} not found");
 

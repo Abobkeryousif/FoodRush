@@ -14,7 +14,7 @@ namespace FoodRush.Application.Feature.Command.Reviews
 
         public async Task<ApiResponse<string>> Handle(DeleteReviewCommand request, CancellationToken cancellationToken)
         {
-            var review = await _unitofwork.ReviewRepository.FirstOrDefaultAsync(r => r.Id == request.reviewId);
+            var review = await _unitofwork.ReviewRepository.GetByIdAsync(request.reviewId);
             if (review == null)
                 return new ApiResponse<string>(HttpStatusCode.NotFound, $"Not Found With ID: {request.reviewId}");
 

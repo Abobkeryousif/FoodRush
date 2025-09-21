@@ -12,7 +12,7 @@ namespace FoodRush.Application.Feature.Command.Meals
         
         public async Task<ApiResponse<updateMealDto>> Handle(UpdateMealCommand request, CancellationToken cancellationToken)
         {
-            var meal = await _unitofwork.MealRepository.FirstOrDefaultAsync(m=> m.mealId == request.id);
+            var meal = await _unitofwork.MealRepository.GetByIdAsync(request.id);
             if (meal == null)
                 return new ApiResponse<updateMealDto>(HttpStatusCode.NotFound , $"Not Found With Id: {request.id}");
 
