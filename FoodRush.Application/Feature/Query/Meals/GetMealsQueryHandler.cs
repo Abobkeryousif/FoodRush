@@ -1,5 +1,4 @@
 ﻿
-
 namespace FoodRush.Application.Feature.Query.Meals
 {
     public record GetMealsQuery : IRequest<ApiResponse<List<GetMealDto>>>;

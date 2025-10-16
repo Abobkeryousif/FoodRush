@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
+﻿
 namespace FoodRush.Application.DependencyInjection
 {
     public static class ApplicationRegisterition
@@ -7,6 +6,9 @@ namespace FoodRush.Application.DependencyInjection
         public static IServiceCollection ApplicationReigster(this IServiceCollection services)
         {
             services.AddMediatR(m => m.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+
+            services.AddTransient(typeof(IPipelineBehavior<,>) , typeof(LoggingBehavior<,>));
+
             services.AddAutoMapper(typeof(AutoMapping));
 
             //To Handel Error And Deal With Fluent Validation Error And Hide Trace

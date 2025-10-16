@@ -87,7 +87,9 @@ namespace FoodRush.Infrastructure.Implemention
             const int maxPageSize = 20;
             const int defaultPageSize = 10;
 
-            var pageSize = parameters.PageSize <= 0 ? defaultPageSize : (parameters.PageSize > maxPageSize ? maxPageSize : parameters.PageSize);
+            var pageSize = parameters.PageSize <= 0 ? defaultPageSize :
+                (parameters.PageSize > maxPageSize ? maxPageSize : parameters.PageSize);
+
             var pageNumber = parameters.PageNumber <= 0 ? 1 : parameters.PageNumber;
 
             var skip = (pageNumber - 1) * pageSize;

@@ -18,4 +18,6 @@ global using System.Security.Cryptography;
 global using FoodRush.Domain.Common.Enum;
 global using FoodRush.Domain.Entites.Order;
 global using Microsoft.Extensions.Logging;
-
+global using FoodRush.Application.Behaviors;
+global using Microsoft.AspNetCore.Mvc;
+global using System.Diagnostics;
